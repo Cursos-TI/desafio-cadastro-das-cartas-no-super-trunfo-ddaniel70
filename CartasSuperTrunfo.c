@@ -13,7 +13,8 @@ int main(){
     char estado1[20], estado2[20];            //cada carta tem seu estado  
     char cidade1[20], cidade2[20];           //cada cidade tem sua carta
     char numero1[4], numero2[4];            //codigo da carta , usei numero para nao usar a palavra codigo podendo confundir.
-    int populacao1, populacao2;            //numero de pessoas naquela cidade daquela carta.
+    int populacao1, populacao2;            // populaçao de cada cidade
+    int pontos1, pontos2;                  //numero de pontos turisticos
     float area1, area2;                   //tamanho de cada cidade de cada carta
     float pib1, pib2;                    //PIB de cada cidade de cada carta 
    
@@ -43,6 +44,9 @@ int main(){
     printf("Qual a Populaçao dessa Cidade? use numeros e pontos\n");
     scanf("%d", &populacao1);
 
+    printf("Quantos poontos turisticos tem essa Cidade?\n");
+    scanf("%d", &pontos1);
+
     //cadastro carta 2
 
     printf("\n"); // dar espaço 
@@ -67,6 +71,9 @@ int main(){
 
     printf("Qual a Populaçao dessa Cidade? use numeros e pontos \n");
     scanf("%d", &populacao2);
+
+    printf("Quantos poontos turisticos tem essa Cidade?\n");
+    scanf("%d", &pontos2);
      
     // agora mostraremos as informaçoes da 1 carta
 
@@ -82,6 +89,7 @@ int main(){
     printf("Populaçao: %d \n", populacao1);
     printf("Area: %f \n", area1);
     printf("PIB: %f \n", pib1);
+    printf("Pontos turisticos: %d \n", pontos1);
 
     printf("\n");
 
@@ -97,6 +105,7 @@ int main(){
     printf("Populaçao: %d \n", populacao2);
     printf("Area: %f \n", area2);
     printf("PIB: %f \n", pib2);
+    printf("Pontos turisticos: %d \n", pontos2);
 
     printf("\n");
     printf("\nObrigado Por Cadastrar sua Cartas \n");
