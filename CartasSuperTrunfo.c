@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h> //garantir que o strcspn seja reconhecido
+
 
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das Cartas
@@ -10,30 +12,41 @@ int main(){
 
     //variaveis
 
-    char estado1[20], estado2[20];            //cada carta tem seu estado  
-    char cidade1[20], cidade2[20];           //cada cidade tem sua carta
-    char numero1[4], numero2[4];            //codigo da carta , usei numero para nao usar a palavra codigo podendo confundir.
-    int populacao1, populacao2;            // populaçao de cada cidade
-    int pontos1, pontos2;                  //numero de pontos turisticos
-    float area1, area2;                   //tamanho de cada cidade de cada carta
-    float pib1, pib2;                    //PIB de cada cidade de cada carta 
+    char estado1[20], estado2[20];                        //cada carta tem seu estado  
+    char cidade1[20], cidade2[20];                       //cada cidade tem sua carta
+    char numero1[4], numero2[4];                        //codigo da carta , usei numero para nao usar a palavra codigo podendo confundir.
+    
+    int populacao1, populacao2;                        // populaçao de cada cidade
+    int pontos1, pontos2;                             //numero de pontos turisticos
    
+    float area1, area2;                              //tamanho de cada cidade de cada carta
+    float pib1, pib2;                               //PIB de cada cidade de cada carta 
+    float densidade1;                              //densidade populacional carta 1
+    float densidade2;                             //densidade populacional carta 1
+    float pibpercapita1;                        //pib per capita carta 1 
+    float pibpercapita2;                       //pib per capita carta 2
+
     //tela inicial 
 
     printf("Bem Vindo Ao Super Trunfo \n");                      // tela de bem vindo
    
     //tela de cadastro da 1 carta
 
-    printf("Vamos cadastrar sua primeira Carta \n");
+    printf("\nVamos cadastrar sua primeira Carta \n");
 
-    printf("crie um codigo unico para essa carta, exemplo: A01 \n");
+    printf("\ncrie um codigo unico para essa carta, exemplo: A01 \n");
     scanf("%s", numero1); // cadastrar o codigo unico da carta 1.
 
+    getchar(); // limpar o buffer apos o scanf
+
     printf("Qual o nome da Cidade? \n");
-    scanf("%s", cidade1);
+    fgets(cidade1, sizeof(cidade1), stdin);   // ler mais de uma palavra usar o tamanho do array e entrada padrao do teclado
+    cidade1[strcspn(cidade1, "\n")] = '\0';   // remover o enter pois o fgets captura o enter substituindo pelo \0
 
     printf("Qual o Estado dessa cidade? \n");
-    scanf("%s", estado1);
+    fgets(estado1, sizeof(estado1), stdin);
+    estado1[strcspn(estado1, "\n")] = '\0';
+
 
     printf("Qual o tamanho da area dessa ciade em km²? use numeros e pontos\n");
     scanf("%f", &area1);
@@ -47,6 +60,11 @@ int main(){
     printf("Quantos poontos turisticos tem essa Cidade?\n");
     scanf("%d", &pontos1);
 
+     // atribuindo os valores de densidade e pib per capita  carta 1
+     densidade1 = (float) populacao1 / area1;
+     pibpercapita1 = (float) pib1 / populacao1;
+
+
     //cadastro carta 2
 
     printf("\n"); // dar espaço 
@@ -57,11 +75,15 @@ int main(){
     printf("crie um codigo unico para essa carta,Nao pode ser igual o da carta1 exemplo: A02 \n");
     scanf("%s", numero2); // cadastrar o codigo unico da carta 1.
 
+    getchar(); // limpar o buffer
+
     printf("Qual o nome da Cidade? \n");
-    scanf("%s", cidade2);
+    fgets(cidade2, sizeof(cidade2), stdin);   // cadastrar dois nomes , usar o tamanho do array e salvar usando entrada padrao do teclado
+    cidade2[strcspn(cidade2, "\n")] = '\0';   // remover o enter
 
     printf("Qual o Estado dessa cidade? \n");
-    scanf("%s", estado2);
+    fgets(estado2, sizeof(estado2), stdin);
+    estado2[strcspn(estado2, "\n")] = '\0';
 
     printf("Qual o tamanho da area dessa ciade em km²?  use numeros e pontos\n");
     scanf("%f", &area2);
@@ -75,6 +97,12 @@ int main(){
     printf("Quantos poontos turisticos tem essa Cidade?\n");
     scanf("%d", &pontos2);
      
+    
+     // atribuindo os valores de densidade e pib per capita  carta 2
+    densidade2 = (float) populacao2 / area2;
+    pibpercapita2 = (float) pib2 / populacao2;
+
+
     // agora mostraremos as informaçoes da 1 carta
 
     printf("\n");   
@@ -87,11 +115,15 @@ int main(){
     printf("Cidade: %s \n", cidade1);
     printf("Estado: %s \n", estado1);
     printf("Populaçao: %d \n", populacao1);
-    printf("Area: %f \n", area1);
-    printf("PIB: %f \n", pib1);
+    printf("Area: %.2f km²\n", area1);
+    printf("PIB: %.2f bilhoes de reais\n", pib1);
     printf("Pontos turisticos: %d \n", pontos1);
+    printf("Densidade demografica: %.2f hab/km²\n", densidade1);
+    printf("PIB per Capita: %.2f reais\n", pibpercapita1);
 
     printf("\n");
+
+
 
     // informaçoes da 2 carta
 
@@ -103,9 +135,11 @@ int main(){
     printf("Cidade: %s \n", cidade2);
     printf("Estado: %s \n", estado2);
     printf("Populaçao: %d \n", populacao2);
-    printf("Area: %f \n", area2);
-    printf("PIB: %f \n", pib2);
+    printf("Area: %.2f km²\n", area2);
+    printf("PIB: %.2f bilhoes de reais\n", pib2);
     printf("Pontos turisticos: %d \n", pontos2);
+    printf("Densidade demografica: %.2f hab/km²\n", densidade2);
+    printf("PIB per Capita: %.2f reais\n", pibpercapita2);
 
     printf("\n");
     printf("\nObrigado Por Cadastrar sua Cartas \n");
